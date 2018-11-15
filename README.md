@@ -1,0 +1,1 @@
+# configuration-as-code-secret-ssm-plugin
