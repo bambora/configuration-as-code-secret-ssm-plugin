@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.bambora.jenkins.plugin.casc.secrets.ssm</groupId>
     <artifactId>configuration-as-code-secret-ssm</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>hpi</packaging>
     <name>Configuration as Code AWS SSM secrets</name>
     <description>This plugin resolves secrets from Amazon SSM for CASC plugin</description>
@@ -24,7 +24,8 @@
         <connection>scm:git:ssh://github.com/jenkinsci/configuration-as-code-secret-ssm-plugin.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/jenkinsci/configuration-as-code-secret-ssm-plugin.git</developerConnection>
         <url>https://github.com/jenkinsci/configuration-as-code-secret-ssm-plugin</url>
-    </scm>
+      <tag>configuration-as-code-secret-ssm-1.0.0</tag>
+  </scm>
 
     <properties>
         <jenkins.version>2.60.3</jenkins.version>
