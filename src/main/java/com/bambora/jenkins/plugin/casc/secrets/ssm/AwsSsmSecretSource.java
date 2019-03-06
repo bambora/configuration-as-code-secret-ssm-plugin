@@ -1,5 +1,6 @@
 package com.bambora.jenkins.plugin.casc.secrets.ssm;
 
+import com.amazonaws.SdkClientException;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagement;
 import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagementClientBuilder;
@@ -38,6 +39,9 @@ public class AwsSsmSecretSource extends SecretSource {
             return Optional.empty();
         } catch (AWSSimpleSystemsManagementException e) {
             LOG.log(Level.SEVERE, "Error getting ssm secret: " + resolveKey, e);
+            return Optional.empty();
+        } catch (SdkClientException e) {
+            LOG.log(Level.SEVERE, "Error building sdk: " + resolveKey, e);
             return Optional.empty();
         }
     }

@@ -1,5 +1,6 @@
 package com.bambora.jenkins.plugin.casc.secrets.ssm;
 
+import com.amazonaws.SdkClientException;
 import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagement;
 import com.amazonaws.services.simplesystemsmanagement.model.AWSSimpleSystemsManagementException;
 import com.amazonaws.services.simplesystemsmanagement.model.GetParameterResult;
@@ -78,5 +79,14 @@ public class AwsSsmSecretSourceTest {
         Assert.assertEquals(Optional.of("value"), underTest.reveal("prefix.parameter"));
     }
 
+    @Test
+    public void errorMissingRegion() throws Exception{
+        AWSSimpleSystemsManagement client = Mockito.mock(AWSSimpleSystemsManagement.class);
+        PowerMockito.doReturn(client)
+                .when(underTest, "getClient");
 
+        Mockito.when(client.getParameter(Mockito.any())).thenThrow(SdkClientException.class);
+
+        Assert.assertEquals(Optional.empty(), underTest.reveal("parameter"));
+    }
 }
